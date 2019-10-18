@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Text, View, TouchableOpacity, } from 'react-native';
 import { BarCodeScanner, Permissions} from 'expo';
 import styles from '../styles';
+import { ConnectableObservable } from 'rx-core';
 
 export class LoginScreen extends React.Component {
     constructor() {
@@ -32,7 +33,13 @@ export class LoginScreen extends React.Component {
     
       _handleBarCodeRead = data => {
           this.setState({gotProfile:true})
-         $code = data['data'];
+         code = data['data'];
+         ids = code.split('-')
+            
+            id = ids[1]
+
+            school = ids[2]
+            console.log("Id is " + id)
         this.props.navigation.navigate('Profile', {profile: $code });
       };
 
