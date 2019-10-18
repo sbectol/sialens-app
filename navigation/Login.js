@@ -64,15 +64,7 @@ export class LoginScreen extends React.Component {
         }
         return (
           // <View style={styles.container}>
-          // <TouchableOpacity onPress={() => this._goHome()}>
-            
-          //   <View style={styles.iconBack}>
-    
-          //       <Text onPress={this._goHome} style={styles.awesomeIcons}>{'\uf015'}</Text>
-   
-          //       </View>
-
-          //   </TouchableOpacity>
+        
           //   {this.state.gotProfile ?
           //     <Text>Profile Loaded</Text> :
           //   this.state.hasCameraPermission === null ?
@@ -86,15 +78,19 @@ export class LoginScreen extends React.Component {
           //   }
           // </View>
          
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-              }}>
+            <View style={styles.container}>
+                   <TouchableOpacity onPress={() => this._goHome()}>
+            
+              <View style={styles.iconBack}>
+      
+                   <Text onPress={this._goHome} style={styles.awesomeIcons}>{'\uf015'}</Text>
+     
+                  </View>
+  
+             </TouchableOpacity>
               <BarCodeScanner
                 onBarCodeScanned={noProfile ? undefined : this.handleBarCodeScanned}
-                style={StyleSheet.absoluteFillObject}
+                style={{height: 200, width: 200}}
               />
       
               {/* {scanned && (
@@ -102,7 +98,16 @@ export class LoginScreen extends React.Component {
               )} */}
 
               {noProfile && (
-                <Button title={'Cod ddim yn dilys'} onPress={() => this.setState({ noProfile: false })} />
+               
+                 <TouchableOpacity onPress={() => this.setState({ noProfile: false })}>
+                   <Text style={styles.smallButtonText}>Cod ddim yn dilys</Text>
+                 <View style={[styles.loginButton, styles.greenBack]}>
+              
+                   <Text style={styles.smallButtonText}>Trio eto</Text>
+   
+                   </View>
+   
+                 </TouchableOpacity>
               )}
             </View>
           );
