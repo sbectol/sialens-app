@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import { Text, View,ImageBackground,Image, TouchableOpacity } from 'react-native';
 
-import { Font, Audio } from 'expo';
+import * as Font from 'expo-font'
 
 import styles from '../styles'
 

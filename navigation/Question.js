@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {View, Text, TouchableOpacity, BackHandler} from 'react-native';
 
-import {Audio} from 'expo';
+import {Audio} from 'expo-av';
 
 import styles from '../styles';
 

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Alert, StyleSheet,Text, View, Dimensions, Image, Button,TouchableOpacity } from 'react-native';
-import { Font } from 'expo';
-import { BarCodeScanner, Permissions, Constants, Audio } from 'expo';
-import  { createStackNavigator }  from 'react-navigation';
+import {  Audio } from 'expo-av';
+import  { createStackNavigator, createAppContainer }  from 'react-navigation';
 import {ProfileScreen} from './navigation/Profile';
 import {LoginScreen} from './navigation/Login';
 import {HomeScreen} from './navigation/Home';
@@ -32,6 +30,7 @@ const SialensApp =  createStackNavigator({
   SchoolStats: {screen:SchoolStats}
 });
 
+const AppContainer = createAppContainer(SialensApp);
 
 export default class App extends React.Component {
 
@@ -48,7 +47,11 @@ export default class App extends React.Component {
     
       shouldDuckAndroid: true,
     
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+
+      playThroughEarpieceAndroid: true,
+
+      staysActiveInBackground: false
     
       });
       
@@ -66,7 +69,7 @@ export default class App extends React.Component {
 
       const mp3 = require('./assets/sounds/newloop.mp3');
 
-      const { sound } = await Audio.Sound.create(mp3, { shouldPlay: true, isLooping: true, volume: 0.2 });
+      const { sound } = await Audio.Sound.createAsync(mp3, { shouldPlay: true, isLooping: true, volume: 0.2 });
       
       this.bgMusic = sound;
 
@@ -76,7 +79,7 @@ export default class App extends React.Component {
       
 
   render() {
-    return <SialensApp />;
+    return <AppContainer />;
   }
 }
 
